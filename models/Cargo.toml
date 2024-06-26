@@ -1,0 +1,16 @@
+[package]
+name = "models"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+
+[dependencies]
+serde = { version = "1.0.193", features = ["derive"] }
+serde_json = "1.0.108"
+sea-orm = { version = "1.0.0-rc.4", features = [
+  "sqlx-postgres",
+  "sqlx-sqlite",
+  "runtime-tokio-rustls",
+  "macros",
+] }

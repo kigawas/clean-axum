@@ -1,0 +1,17 @@
+[package]
+name = "clean-axum"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# docs
+authors = ["Weiliang Li <to.be.impressive@gmail.com>"]
+description = "Axum scaffold with clean architecture"
+license = "MIT"
+readme = "README.md"
+
+[workspace]
+members = ["api", "app", "models", "migration"]
+
+[dependencies]
+api = { path = "api" }
