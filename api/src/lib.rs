@@ -1,7 +1,12 @@
+use utoipa::OpenApi;
+use utoipa_swagger_ui::SwaggerUi;
+
+mod doc;
 mod routers;
 
 use app::config::Config;
 use app::state::AppState;
+use doc::ApiDoc;
 use models::orm::Database;
 use routers::create_router;
 
@@ -18,7 +23,8 @@ pub async fn main() {
         .await
         .expect("Database connection failed");
 
-    let app = create_router(AppState { conn });
+    let app = create_router(AppState { conn })
+        .merge(SwaggerUi::new("/docs").url("/openapi.json", ApiDoc::openapi()));
 
     let listener = tokio::net::TcpListener::bind(&config.get_server_url())
         .await

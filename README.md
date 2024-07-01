@@ -4,10 +4,11 @@ Axum scaffold with clean architecture.
 
 ## Features
 
-- Axum framework
-- SeaORM domain models
+- [Axum](https://github.com/tokio-rs/axum) framework
+- [SeaORM](https://github.com/SeaQL/sea-orm) domain models
 - Completely separated API routers and DB-related logic (named "services")
 - Completely separated input parameters, queries and output schemas
+- OpenAPI documentation powered by [Utoipa](https://github.com/juhaku/utoipa)
 
 ## Module hierarchy
 
@@ -42,6 +43,12 @@ cargo run
 curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"username":"aaa"}'
 curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"username":"abc"}'
 curl http://localhost:3000/users\?username\=a
+```
+
+### OpenAPI doc (Swagger UI)
+
+```bash
+open http://localhost:3000/docs
 ```
 
 ## Motivation
