@@ -1,4 +1,5 @@
 use utoipa::OpenApi;
+use utoipa_scalar::{Scalar, Servable as ScalarServable};
 use utoipa_swagger_ui::SwaggerUi;
 
 mod doc;
@@ -24,7 +25,8 @@ pub async fn main() {
         .expect("Database connection failed");
 
     let app = create_router(AppState { conn })
-        .merge(SwaggerUi::new("/docs").url("/openapi.json", ApiDoc::openapi()));
+        .merge(SwaggerUi::new("/docs").url("/openapi.json", ApiDoc::openapi()))
+        .merge(Scalar::with_url("/scalar", ApiDoc::openapi()));
 
     let listener = tokio::net::TcpListener::bind(&config.get_server_url())
         .await

@@ -21,6 +21,9 @@ utoipa-swagger-ui = { version = "7.1.1-alpha.0", features = [
     "axum",
     "vendored",
 ], default-features = false }
+utoipa-scalar = { version = "0.2.0-alpha.0", features = [
+    "axum",
+], default-features = false }
 
 # local dependencies
 app = { path = "../app" }

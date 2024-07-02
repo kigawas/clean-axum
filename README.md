@@ -45,10 +45,11 @@ curl -X POST http://localhost:3000/users -H "Content-Type: application/json" -d 
 curl http://localhost:3000/users\?username\=a
 ```
 
-### OpenAPI doc (Swagger UI)
+### OpenAPI doc (Swagger UI/Scalar)
 
 ```bash
 open http://localhost:3000/docs
+open http://localhost:3000/scalar
 ```
 
 ## Motivation
