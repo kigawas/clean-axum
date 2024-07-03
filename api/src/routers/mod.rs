@@ -10,6 +10,7 @@ use app::state::AppState;
 use root::root;
 use user::{users_get, users_id_get, users_post};
 
+// TODO: middleware and error handling
 pub fn create_router(state: AppState) -> Router {
     Router::new()
         .route("/", get(root))

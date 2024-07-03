@@ -22,3 +22,6 @@ target/
 
 .env
 dev.db
+
+.shuttle-storage
+Secrets*.toml
