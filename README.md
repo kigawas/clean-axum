@@ -57,24 +57,32 @@ open http://localhost:3000/docs
 open http://localhost:3000/scalar
 ```
 
-## Shuttle deployment
-
-Add `Secrets.toml`
-
-```toml
-DATABASE_URL = "sqlite://dev.db"
-```
-
-Then
+## Start Shuttle local server
 
 ```bash
 # cargo install cargo-shuttle
+cargo shuttle run
+```
+
+Make sure docker engine is running, otherwise:
+
+```bash
+brew install colima docker
+colima start
+sudo ln -sf $HOME/.colima/default/docker.sock /var/run/docker.sock
+```
+
+## Shuttle deployment
+
+```bash
+cargo shuttle login
 cargo shuttle deploy
 ```
 
 ## Benchmark
 
 ```bash
+# edit .env to use Postgres
 cargo run --release
 wrk --latency -t20 -c50 -d10s http://localhost:3000/users\?username\=
 ```

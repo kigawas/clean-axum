@@ -1,9 +1,9 @@
 use std::process::Command;
 
-pub fn touch(file_name: &str) {
+fn touch(file_name: &str) {
     if cfg!(target_os = "windows") {
         Command::new("cmd")
-            .args(["/C", &format!("copy nul {}", file_name)])
+            .args(["/C", &format!("type nul >> {}", file_name)])
             .output()
             .expect("failed to execute touch");
     } else {
