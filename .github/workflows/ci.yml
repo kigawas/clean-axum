@@ -32,3 +32,14 @@ jobs:
 
       - run: cargo build
 
+      - name: Run server
+        shell: bash # for windows
+        run: |
+          cp .env.example .env
+          cargo run &
+          while ! curl --output /dev/null --silent --head --fail http://localhost:3000; do sleep 0.5; done; echo ok;
+
+      - name: Check server
+        run: |
+          curl -sX POST http://localhost:3000/users -H "Content-Type: application/json" -d '{"username":"abc"}'
+          curl -s http://localhost:3000/users?username=

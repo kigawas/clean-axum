@@ -22,9 +22,9 @@ pub async fn users_post(state: State<AppState>, Json(params): Json<CreateUserPar
     match res {
         Ok(user) => {
             let user = user.try_into_model().unwrap();
-            return (StatusCode::CREATED, Json(UserSchema::from(user))).into_response();
+            (StatusCode::CREATED, Json(UserSchema::from(user))).into_response()
         }
-        Err(err) => return (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
+        Err(err) => (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
     }
 }
 
@@ -44,9 +44,9 @@ pub async fn users_get(state: State<AppState>, query: Option<Query<UserQuery>>) 
     match res {
         Ok(users) => {
             let user_schemas = UserListSchema::from(users);
-            return (StatusCode::OK, Json(user_schemas)).into_response();
+            (StatusCode::OK, Json(user_schemas)).into_response()
         }
-        Err(err) => return (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
+        Err(err) => (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
     }
 }
 #[utoipa::path(
@@ -64,11 +64,9 @@ pub async fn users_id_get(state: State<AppState>, Path(id): Path<i32>) -> Respon
         get_user(&state.conn, id).await;
     match res {
         Ok(user) => match user {
-            Some(user) => {
-                return (StatusCode::OK, Json(UserSchema::from(user))).into_response();
-            }
-            None => return (StatusCode::NOT_FOUND, "Not found").into_response(),
+            Some(user) => (StatusCode::OK, Json(UserSchema::from(user))).into_response(),
+            None => (StatusCode::NOT_FOUND, "Not found").into_response(),
         },
-        Err(err) => return (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
+        Err(err) => (StatusCode::INTERNAL_SERVER_ERROR, err.to_string()).into_response(),
     }
 }
