@@ -2,16 +2,16 @@ name: CD
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: shuttle-hq/deploy-action@main
         with:
           deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
+          # just to show usage
           secrets: |
-            DATABASE_URL = "sqlite://dev.db"
+            DATABASE_URL = 'sqlite://dev.db'
