@@ -1,5 +1,7 @@
 mod doc;
+mod error;
 mod init;
+mod models;
 mod routers;
 
 pub use axum;

@@ -1,6 +1,10 @@
 {
     "editor.formatOnSave": true,
     "cSpell.words": [
-        "Serde"
+        "codegen",
+        "dotenv",
+        "openapi",
+        "Serde",
+        "Utoipa"
     ]
 }

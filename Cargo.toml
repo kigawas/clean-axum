@@ -17,7 +17,11 @@ members = ["api", "app", "models", "migration", "utils"]
 api = { path = "api" }
 utils = { path = "utils" }
 
+# logging
+tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+
+# runtime
 tokio = { version = "1.38.0", features = ["full"] }
 
 # shuttle runtime
