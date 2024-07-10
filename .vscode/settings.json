@@ -3,6 +3,7 @@
     "cSpell.words": [
         "codegen",
         "dotenv",
+        "oneshot",
         "openapi",
         "Serde",
         "Utoipa"
