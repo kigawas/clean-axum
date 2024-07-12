@@ -32,6 +32,8 @@ jobs:
 
       - run: cargo build
 
+      - run: cargo test
+
       - name: Run server
         shell: bash # for windows
         run: |

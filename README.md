@@ -33,6 +33,7 @@ You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
   - `models::schemas`: Serde output schemas for combining different domain models
   - `models::queries`: Serde queries for filtering domain models
 - `migration`: SeaORM migration files
+- `utils`: Utility functions
 - `main`: Tokio and Shuttle conditional entry point
 
 ## Run

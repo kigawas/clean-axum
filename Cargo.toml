@@ -31,6 +31,12 @@ shuttle-shared-db = { version = "0.46.0", features = [
     "postgres",
 ], optional = true }
 
+[dev-dependencies]
+app = { path = "app" }
+models = { path = "models" }
+
+http-body-util = "0.1.2"
+
 [features]
 default = []
 shuttle = ["shuttle-axum", "shuttle-runtime", "shuttle-shared-db"]
