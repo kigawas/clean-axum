@@ -30,14 +30,12 @@ async fn users_post(
     state: State<AppState>,
     Json(params): Json<CreateUserParams>,
 ) -> Result<impl IntoResponse, ApiError> {
-    let res = create_user(&state.conn, params).await;
-    match res {
-        Ok(user) => {
-            let user = user.try_into_model().unwrap();
-            Ok((StatusCode::CREATED, Json(UserSchema::from(user))))
-        }
-        Err(err) => Err(err.into()),
-    }
+    let user = create_user(&state.conn, params)
+        .await
+        .map_err(|e| ApiError::from(e))?;
+
+    let user = user.try_into_model().unwrap();
+    Ok((StatusCode::CREATED, Json(UserSchema::from(user))))
 }
 
 #[utoipa::path(
@@ -56,11 +54,11 @@ async fn users_get(
     query: Option<Query<UserQuery>>,
 ) -> Result<impl IntoResponse, ApiError> {
     let Query(query) = query.unwrap_or_default();
-    let res = search_users(&state.conn, query).await;
-    match res {
-        Ok(users) => Ok(Json(UserListSchema::from(users))),
-        Err(err) => Err(err.into()),
-    }
+
+    let users = search_users(&state.conn, query)
+        .await
+        .map_err(|e| ApiError::from(e))?;
+    Ok(Json(UserListSchema::from(users)))
 }
 #[utoipa::path(
     get,
@@ -78,14 +76,12 @@ async fn users_id_get(
     state: State<AppState>,
     Path(id): Path<i32>,
 ) -> Result<impl IntoResponse, ApiError> {
-    let res = get_user(&state.conn, id).await;
-    match res {
-        Ok(user) => match user {
-            Some(user) => Ok(Json(UserSchema::from(user))),
-            None => Err(UserError::NotFound.into()),
-        },
-        Err(err) => Err(err.into()),
-    }
+    let user = get_user(&state.conn, id)
+        .await
+        .map_err(|e| ApiError::from(e))?;
+
+    user.map(|user| Json(UserSchema::from(user)))
+        .ok_or_else(|| UserError::NotFound.into())
 }
 
 pub fn create_user_router(state: AppState) -> Router {

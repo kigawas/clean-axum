@@ -20,9 +20,9 @@ async fn root(state: State<AppState>) -> Result<String, ApiError> {
             "SELECT 'Hello, World from DB!'",
         ))
         .await
-        .unwrap()
-        .unwrap();
-    result.try_get_by(0).map_err(|e| e.into())
+        .map_err(|e| ApiError::from(e))?;
+
+    result.unwrap().try_get_by(0).map_err(|e| e.into())
 }
 
 pub fn create_root_router(state: AppState) -> Router {

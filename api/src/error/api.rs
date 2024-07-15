@@ -7,7 +7,8 @@ use axum::{
 
 use models::orm::DbErr;
 
-use super::UserError;
+use super::core::HTTPError;
+use super::user::UserError;
 use crate::models::ErrorResponse;
 
 pub struct ApiError(anyhow::Error);
@@ -24,19 +25,13 @@ where
 impl IntoResponse for ApiError {
     fn into_response(self) -> Response {
         let err = self.0;
-        let (status, message) = if err.is::<DbErr>() {
+        let (status, message) = if let Some(err) = err.downcast_ref::<DbErr>() {
             tracing::error!(%err, "error from db");
-            // hide the detail
-            (StatusCode::INTERNAL_SERVER_ERROR, "DB error".to_string())
-        } else if err.is::<UserError>() {
-            let err = err.downcast_ref::<UserError>().unwrap();
-            let status = match err {
-                UserError::NotFound => StatusCode::NOT_FOUND,
-            };
-            (status, err.to_string())
-        } else if err.is::<JsonRejection>() {
-            let err = err.downcast_ref::<JsonRejection>().unwrap();
-            (StatusCode::BAD_REQUEST, err.to_string())
+            (err.to_status_code(), "DB error".to_string()) // hide the detail
+        } else if let Some(err) = err.downcast_ref::<UserError>() {
+            (err.to_status_code(), err.to_string())
+        } else if let Some(err) = err.downcast_ref::<JsonRejection>() {
+            (err.to_status_code(), err.to_string())
         } else {
             tracing::error!(%err, "error from other source");
             (

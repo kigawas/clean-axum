@@ -1,5 +1,6 @@
-mod base;
+mod api;
+mod core;
 mod user;
 
-pub use base::ApiError;
+pub use api::ApiError;
 pub use user::UserError;

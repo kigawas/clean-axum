@@ -7,5 +7,10 @@
         "openapi",
         "Serde",
         "Utoipa"
+    ],
+    "cSpell.ignorePaths": [
+        "**/.cargo",
+        ".vscode",
+        "LICENSE"
     ]
 }
