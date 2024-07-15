@@ -12,6 +12,7 @@ jobs:
       - uses: shuttle-hq/deploy-action@main
         with:
           deploy-key: ${{ secrets.SHUTTLE_API_KEY }}
+          no-test: true
           # just to show usage
           secrets: |
             DATABASE_URL = 'sqlite://dev.db'

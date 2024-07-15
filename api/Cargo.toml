@@ -5,19 +5,18 @@ edition = "2021"
 publish = false
 
 [dependencies]
-axum = { version = "0.7.5", features = ["macros"] }
-tower = "0.4.13"
+axum = { workspace = true, features = ["macros", "query"] }
+serde = { workspace = true }
+tower = { workspace = true }
+tracing = { workspace = true }
+
 tower-http = { version = "0.5.2", features = ["fs"] }
 tower-cookies = "0.10.0"
 anyhow = "1.0.86"
 dotenvy = "0.15.7"
-serde = { version = "1", features = ["derive"] }
-
-# logging
-tracing = "0.1.40"
 
 # doc
-utoipa = { version = "5.0.0-alpha.0", features = ["axum_extras"] }
+utoipa = { workspace = true, features = ["axum_extras"] }
 utoipa-swagger-ui = { version = "7.1.1-alpha.0", features = [
     "axum",
     "vendored",

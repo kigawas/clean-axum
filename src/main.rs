@@ -28,7 +28,7 @@ async fn main() {
         .unwrap();
 
     tracing::debug!("listening on http://{}", listener.local_addr().unwrap());
-    api::axum::serve(listener, router).await.unwrap();
+    axum::serve(listener, router).await.unwrap();
 }
 
 #[cfg(feature = "shuttle")]

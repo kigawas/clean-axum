@@ -1,6 +1,6 @@
+use axum::{http::StatusCode, Router};
 use http_body_util::BodyExt;
 
-use api::axum::{http::StatusCode, Router};
 use api::setup_router;
 use utils::testing::{make_get_request, make_post_request, setup_test_db};
 
