@@ -2,6 +2,7 @@ use axum::{
     extract::FromRequest,
     response::{IntoResponse, Response},
 };
+use validator::Validate;
 
 use crate::error::ApiError;
 
@@ -15,5 +16,11 @@ where
 {
     fn into_response(self) -> Response {
         axum::Json(self.0).into_response()
+    }
+}
+
+impl<T: Validate> Validate for Json<T> {
+    fn validate(&self) -> Result<(), validator::ValidationErrors> {
+        self.0.validate()
     }
 }

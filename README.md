@@ -11,8 +11,9 @@ You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
 - Completely separated API routers and DB-related logic (named "services")
 - Completely separated input parameters, queries and output schemas
 - OpenAPI documentation ([Swagger UI](https://clean-axum.shuttleapp.rs/docs) and [Scalar](https://clean-axum.shuttleapp.rs/scalar)) powered by [Utoipa](https://github.com/juhaku/utoipa)
-- Optional [Shuttle](https://www.shuttle.rs/) runtime
 - Error handling with [Anyhow](https://github.com/dtolnay/anyhow)
+- Custom parameter validation with [validator](https://github.com/Keats/validator)
+- Optional [Shuttle](https://www.shuttle.rs/) runtime
 
 ## Module hierarchy
 
@@ -20,9 +21,9 @@ You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
   - `api::routers`: Axum endpoints
   - `api::doc`: Utoipa doc declaration
   - `api::error`: Error handling
+  - `api::extractor` and `api::validation`: Axum extractor and JSON validation
 - `api::models`: Non domain model API models
   - `api::models::response`: JSON error response
-  - `api::models::request`: Custom Axum Json extractor for error handling
 - `app`: DB/API-agnostic logic
   - `app::services`: DB manipulation (CRUD) functions
   - `app::config`: DB or API configuration

@@ -9,11 +9,15 @@ axum = { workspace = true, features = ["macros", "query"] }
 serde = { workspace = true }
 tower = { workspace = true }
 tracing = { workspace = true }
+validator = { workspace = true, features = ["derive"] }
 
 tower-http = { version = "0.5.2", features = ["fs"] }
 tower-cookies = "0.10.0"
 anyhow = "1.0.86"
 dotenvy = "0.15.7"
+
+# db
+sea-orm = { workspace = true }
 
 # doc
 utoipa = { workspace = true, features = ["axum_extras"] }

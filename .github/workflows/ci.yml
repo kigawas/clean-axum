@@ -27,10 +27,10 @@ jobs:
 
       - uses: Swatinem/rust-cache@v2
 
-      - name: Check and run lint
-        run: cargo check && cargo fmt && cargo clippy
-
+      # cargo build before check to speed up check
       - run: cargo build
+
+      - run: cargo check && cargo fmt && cargo clippy
 
       - run: cargo test
 

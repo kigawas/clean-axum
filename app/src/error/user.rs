@@ -1,7 +1,3 @@
-use axum::http::StatusCode;
-
-use super::core::HTTPError;
-
 #[derive(Debug)]
 pub enum UserError {
     NotFound,
@@ -16,11 +12,3 @@ impl std::fmt::Display for UserError {
 }
 
 impl std::error::Error for UserError {}
-
-impl HTTPError for UserError {
-    fn to_status_code(&self) -> StatusCode {
-        match self {
-            UserError::NotFound => StatusCode::NOT_FOUND,
-        }
-    }
-}

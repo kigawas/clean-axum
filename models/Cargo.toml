@@ -14,4 +14,5 @@ sea-orm = { workspace = true, features = [
   "runtime-tokio-rustls",
   "macros",
 ] }
+validator = { workspace = true, features = ["derive"] }
 utoipa = { workspace = true }

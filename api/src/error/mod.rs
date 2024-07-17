@@ -1,6 +1,7 @@
-mod api;
+mod adapter;
 mod core;
-mod user;
+mod handler;
+mod traits;
 
-pub use api::ApiError;
-pub use user::UserError;
+pub use core::ApiError;
+pub use traits::HTTPError;
