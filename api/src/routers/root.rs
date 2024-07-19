@@ -1,7 +1,7 @@
 use axum::{extract::State, routing::get, Router};
+use sea_orm::{ConnectionTrait, Statement};
 
 use app::state::AppState;
-use models::orm::{ConnectionTrait, Statement};
 
 use crate::error::ApiError;
 
@@ -20,7 +20,7 @@ async fn root(state: State<AppState>) -> Result<String, ApiError> {
             "SELECT 'Hello, World from DB!'",
         ))
         .await
-        .map_err(|e| ApiError::from(e))?;
+        .map_err(ApiError::from)?;
 
     result.unwrap().try_get_by(0).map_err(|e| e.into())
 }

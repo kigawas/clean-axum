@@ -1,5 +1,6 @@
+use sea_orm::{ActiveModelTrait, ColumnTrait, DbConn, DbErr, EntityTrait, QueryFilter, Set};
+
 use models::domains::user;
-use models::orm::{ActiveModelTrait, ColumnTrait, DbConn, DbErr, EntityTrait, QueryFilter, Set};
 use models::params::user::CreateUserParams;
 use models::queries::user::UserQuery;
 

@@ -1,11 +1,11 @@
 use axum::Router;
+use sea_orm::{ConnectOptions, Database, DatabaseConnection};
 use utoipa::OpenApi;
 use utoipa_scalar::{Scalar, Servable as ScalarServable};
 use utoipa_swagger_ui::SwaggerUi;
 
 use app::config::Config;
 use app::state::AppState;
-use models::orm::{ConnectOptions, Database, DatabaseConnection};
 
 use crate::doc::ApiDoc;
 use crate::routers::create_router;

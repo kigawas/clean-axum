@@ -1,6 +1,7 @@
+use sea_orm::{DatabaseConnection, DbErr, Unchanged};
+
 use app::services::user::create_user;
 use models::domains::user;
-use models::orm::{DatabaseConnection, DbErr, Unchanged};
 use models::params::user::CreateUserParams;
 use utils::testing::setup_test_db;
 
