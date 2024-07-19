@@ -137,8 +137,6 @@ dependencies = [
  "tower-http",
  "tracing",
  "utoipa",
- "utoipa-scalar",
- "utoipa-swagger-ui",
  "validator",
 ]
 
@@ -640,9 +638,11 @@ dependencies = [
  "api",
  "app",
  "axum 0.7.5",
+ "doc",
  "http-body-util",
  "models",
  "sea-orm",
+ "serde_json",
  "shuttle-axum",
  "shuttle-runtime",
  "shuttle-shared-db",
@@ -954,6 +954,18 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 2.0.71",
+]
+
+[[package]]
+name = "doc"
+version = "0.1.0"
+dependencies = [
+ "api",
+ "axum 0.7.5",
+ "models",
+ "utoipa",
+ "utoipa-scalar",
+ "utoipa-swagger-ui",
 ]
 
 [[package]]
@@ -2872,9 +2884,9 @@ dependencies = [
 
 [[package]]
 name = "sea-query"
-version = "0.31.0-rc.8"
+version = "0.31.0-rc.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f62d5f33113186ad8b0f47c3522e40f9c31cdbc3056a8d7ad402e7498fc29789"
+checksum = "2ad45af4aedefa04c296d623ffb7e409a24d4bfc0b5599b43f5726d88cc7ff2a"
 dependencies = [
  "educe",
  "inherent",

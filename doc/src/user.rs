@@ -3,8 +3,8 @@ use utoipa::OpenApi;
 use models::params::user::CreateUserParams;
 use models::schemas::user::{UserListSchema, UserSchema};
 
-use crate::models::{ApiErrorResponse, ParamsErrorResponse};
-use crate::routers::user::*;
+use api::models::{ApiErrorResponse, ParamsErrorResponse};
+use api::routers::user::*;
 
 #[derive(OpenApi)]
 #[openapi(
@@ -17,4 +17,4 @@ use crate::routers::user::*;
         ParamsErrorResponse,
     ))
 )]
-pub struct UserApi;
+pub(super) struct UserApi;

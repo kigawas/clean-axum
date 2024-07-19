@@ -1,7 +1,7 @@
 use utoipa::OpenApi;
 
-use crate::routers::root::*;
+use api::routers::root::*;
 
 #[derive(OpenApi)]
 #[openapi(paths(root))]
-pub struct RootApi;
+pub(super) struct RootApi;
