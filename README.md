@@ -17,23 +17,51 @@ You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
 
 ## Module hierarchy
 
-- `api`: Axum logic
-  - `api::routers`: Axum endpoints
-  - `api::doc`: Utoipa doc declaration
-  - `api::error`: Error handling
-  - `api::extractor` and `api::validation`: Axum extractor and JSON validation
+### API logic
+
+- `api::routers`: Axum endpoints
+- `api::error`: Models and traits for error handling
+- `api::extractor` Custom Axum extractors
+  - `api::extractor::json`: `Json` for bodies and responses
+  - `api::extractor::valid`: `Valid` for JSON body validation
+- `api::validation`: JSON validation model based on `validator`
 - `api::models`: Non domain model API models
   - `api::models::response`: JSON error response
-- `app`: DB/API-agnostic logic
-  - `app::services`: DB manipulation (CRUD) functions
-  - `app::config`: DB or API configuration
-  - `app::state`: APP state, e.g. DB connection
-- `models`: DB/API-agnostic models
-  - `models::domains`: SeaORM domain models
-  - `models::params`: Serde input parameters for creating/updating domain models in DB
-  - `models::schemas`: Serde output schemas for combining different domain models
-  - `models::queries`: Serde queries for filtering domain models
+
+### OpenAPI documentation
+
+- `doc`: Utoipa doc declaration
+
+### API-agonistic DB logic
+
+Main concept: Web framework is replaceable.
+
+All modules here should not include any specific API web framework logic.
+
+- `app::services`: DB manipulation (CRUD) functions
+- `app::config`: DB or API server configuration
+- `app::state`: APP state, e.g. DB connection
+- `app::error`: APP errors used by `api::error`. e.g. "User not found"
+
+### DB/API-agnostic domain models
+
+Main concept: Database (Sqlite/MySQL/PostgreSQL) is replaceable.
+
+Except `models::domains` and `migration`, all modules are ORM library agnostic.
+
+- `models::domains`: SeaORM domain models
+- `models::params`: Serde input parameters for creating/updating domain models in DB
+- `models::schemas`: Serde output schemas for combining different domain models
+- `models::queries`: Serde queries for filtering domain models
 - `migration`: SeaORM migration files
+
+### Unit and integration tests
+
+- `tests::api`: API integration tests. Hierarchy is the same as `api::routers`
+- `tests::app`: DB/ORM-related unit tests. Hierarchy is the same as `app::services`
+
+### Others
+
 - `utils`: Utility functions
 - `main`: Tokio and Shuttle conditional entry point
 

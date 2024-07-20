@@ -20,14 +20,7 @@ dotenvy = "0.15.7"
 sea-orm = { workspace = true }
 
 # doc
-utoipa = { workspace = true, features = ["axum_extras"] }
-utoipa-swagger-ui = { version = "7.1.1-alpha.0", features = [
-    "axum",
-    "vendored",
-], default-features = false }
-utoipa-scalar = { version = "0.2.0-alpha.0", features = [
-    "axum",
-], default-features = false }
+utoipa = { workspace = true }
 
 # local dependencies
 app = { path = "../app" }

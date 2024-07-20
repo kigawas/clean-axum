@@ -1,3 +1,5 @@
+use api::{setup_db, setup_router};
+use doc::ApiDoc;
 use utils::migrate;
 
 #[cfg(not(feature = "shuttle"))]
@@ -19,10 +21,10 @@ async fn main() {
     let config = api::setup_config();
     create_dev_db(&config.db_url);
 
-    let conn = api::setup_db(&config.db_url).await;
+    let conn = setup_db(&config.db_url).await;
     migrate(&conn).await.expect("Migration failed!");
 
-    let router = api::setup_router(conn);
+    let router = setup_router(conn).attach_doc();
     let listener = tokio::net::TcpListener::bind(&config.get_server_url())
         .await
         .unwrap();
@@ -36,9 +38,9 @@ async fn main() {
 async fn main(#[shuttle_shared_db::Postgres] db_url: String) -> shuttle_axum::ShuttleAxum {
     tracing::info!("Starting with shuttle");
 
-    let conn = api::setup_db(&db_url).await;
+    let conn = setup_db(&db_url).await;
     migrate(&conn).await.expect("Migration failed!");
 
-    let router = api::setup_router(conn);
+    let router = setup_router(conn).attach_doc();
     Ok(router.into())
 }

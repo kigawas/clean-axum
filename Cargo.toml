@@ -11,13 +11,14 @@ license = "MIT"
 readme = "README.md"
 
 [workspace]
-members = ["api", "app", "models", "migration", "utils"]
+members = ["api", "app", "doc", "models", "migration", "utils"]
 
 [workspace.dependencies]
 axum = { version = "0.7.5", default-features = false }
 tower = { version = "0.4.13", default-features = false }
 sea-orm = { version = "1.0.0-rc.7", default-features = false }
 serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", default-features = false }
 tracing = "0.1.40"
 utoipa = { version = "5.0.0-alpha.0", default-features = false }
 validator = { version = "0.18", default-features = false }
@@ -25,6 +26,7 @@ validator = { version = "0.18", default-features = false }
 [dependencies]
 api = { path = "api" }
 utils = { path = "utils" }
+doc = { path = "doc" }
 
 sea-orm = { workspace = true }
 
@@ -48,6 +50,7 @@ app = { path = "app" }
 models = { path = "models" }
 
 http-body-util = "0.1.2"
+serde_json = { workspace = true }
 
 [features]
 default = []
