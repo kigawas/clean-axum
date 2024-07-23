@@ -4,6 +4,8 @@ Axum scaffold with clean architecture.
 
 You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
 
+Refer to this post for more details on background: <https://kigawas.me/posts/rustacean-clean-architecture-approach/>.
+
 ## Features
 
 - [Axum](https://github.com/tokio-rs/axum) framework
