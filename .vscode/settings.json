@@ -4,8 +4,10 @@
         "codegen",
         "dotenv",
         "dotenvy",
+        "nonblocking",
         "oneshot",
         "openapi",
+        "prefork",
         "Serde",
         "Utoipa"
     ],
