@@ -28,17 +28,26 @@ jobs:
       - uses: Swatinem/rust-cache@v2
 
       # cargo build before check to speed up check
-      - run: cargo build
+      - run: cargo build --no-default-features && cargo check --no-default-features
+        if: matrix.os == 'windows-latest'
+      - run: cargo build && cargo check
+        if: matrix.os != 'windows-latest'
 
-      - run: cargo check && cargo fmt && cargo clippy
+      - run: cargo fmt && cargo clippy --no-default-features
+        if: matrix.os == 'windows-latest'
+      - run: cargo fmt && cargo clippy
+        if: matrix.os != 'windows-latest'
 
+      - run: cargo test --no-default-features
+        if: matrix.os == 'windows-latest'
       - run: cargo test
+        if: matrix.os != 'windows-latest'
 
       - name: Run server
         shell: bash # for windows
         run: |
           cp .env.example .env
-          cargo run &
+          ./target/debug/clean-axum &
           while ! curl --output /dev/null --silent --head --fail http://localhost:3000; do sleep 0.5; done; echo ok;
 
       - name: Check server

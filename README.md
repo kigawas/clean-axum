@@ -4,7 +4,7 @@ Axum scaffold with clean architecture.
 
 You probably don't need [Rust on Rails](https://github.com/loco-rs/loco).
 
-Refer to this post for more details on background: <https://kigawas.me/posts/rustacean-clean-architecture-approach/>.
+Refer to [this post](https://kigawas.me/posts/rustacean-clean-architecture-approach/) for rationale and background.
 
 ## Features
 
@@ -16,6 +16,7 @@ Refer to this post for more details on background: <https://kigawas.me/posts/rus
 - Error handling with [Anyhow](https://github.com/dtolnay/anyhow)
 - Custom parameter validation with [validator](https://github.com/Keats/validator)
 - Optional [Shuttle](https://www.shuttle.rs/) runtime
+- Optional [prefork](https://docs.rs/prefork/latest/prefork/) workers for maximizing performance on Linux
 
 ## Module hierarchy
 
@@ -34,7 +35,7 @@ Refer to this post for more details on background: <https://kigawas.me/posts/rus
 
 - `doc`: Utoipa doc declaration
 
-### API-agonistic DB logic
+### API-agonistic application logic
 
 Main concept: Web framework is replaceable.
 
@@ -77,6 +78,9 @@ cp .env.example .env
 # cargo install sea-orm-cli
 # sea-orm-cli migrate up
 cargo run
+
+# or for production
+cargo run --release
 ```
 
 ### Call API

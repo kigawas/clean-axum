@@ -2,6 +2,7 @@ pub struct Config {
     pub db_url: String,
     pub host: String,
     pub port: u32,
+    pub prefork: bool,
 }
 
 impl Config {
@@ -13,6 +14,7 @@ impl Config {
                 .expect("PORT is not set in .env file")
                 .parse()
                 .expect("PORT is not a number"),
+            prefork: std::env::var("PREFORK").is_ok_and(|v| v == "1"),
         }
     }
 
