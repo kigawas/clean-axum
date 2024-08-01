@@ -9,6 +9,7 @@ use user::create_user_router;
 
 pub fn create_router(state: AppState) -> Router {
     Router::new()
-        .nest("/users", create_user_router(state.clone()))
-        .nest("/", create_root_router(state))
+        .nest("/users", create_user_router())
+        .nest("/", create_root_router())
+        .with_state(state)
 }

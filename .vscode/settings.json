@@ -4,6 +4,7 @@
         "codegen",
         "dotenv",
         "dotenvy",
+        "Iden",
         "nonblocking",
         "oneshot",
         "openapi",

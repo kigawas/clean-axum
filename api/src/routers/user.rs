@@ -84,9 +84,8 @@ async fn users_id_get(
         .ok_or_else(|| UserError::NotFound.into())
 }
 
-pub fn create_user_router(state: AppState) -> Router {
+pub fn create_user_router() -> Router<AppState> {
     Router::new()
         .route("/", post(users_post).get(users_get))
         .route("/:id", get(users_id_get))
-        .with_state(state)
 }
