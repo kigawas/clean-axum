@@ -10,7 +10,7 @@ Refer to [this post](https://kigawas.me/posts/rustacean-clean-architecture-appro
 
 - [Axum](https://github.com/tokio-rs/axum) framework
 - [SeaORM](https://github.com/SeaQL/sea-orm) domain models
-- Completely separated API routers and DB-related logic (named "services")
+- Completely separated API routers and DB-related logic (named "persistence" layer)
 - Completely separated input parameters, queries and output schemas
 - OpenAPI documentation ([Swagger UI](https://clean-axum.shuttleapp.rs/docs) and [Scalar](https://clean-axum.shuttleapp.rs/scalar)) powered by [Utoipa](https://github.com/juhaku/utoipa)
 - Error handling with [Anyhow](https://github.com/dtolnay/anyhow)
@@ -41,7 +41,7 @@ Main concept: Web framework is replaceable.
 
 All modules here should not include any specific API web framework logic.
 
-- `app::services`: DB manipulation (CRUD) functions
+- `app::persistence`: DB manipulation (CRUD) functions
 - `app::config`: DB or API server configuration
 - `app::state`: APP state, e.g. DB connection
 - `app::error`: APP errors used by `api::error`. e.g. "User not found"
@@ -61,7 +61,7 @@ Except `models::domains` and `migration`, all modules are ORM library agnostic.
 ### Unit and integration tests
 
 - `tests::api`: API integration tests. Hierarchy is the same as `api::routers`
-- `tests::app`: DB/ORM-related unit tests. Hierarchy is the same as `app::services`
+- `tests::app::persistence`: DB/ORM-related unit tests. Hierarchy is the same as `app::persistence`
 
 ### Others
 
