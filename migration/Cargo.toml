@@ -12,4 +12,4 @@ path = "src/lib.rs"
 models = { path = "../models" }
 
 async-std = { version = "1", features = ["attributes", "tokio1"] }
-sea-orm-migration = { version = "1.0.0-rc.7" }
+sea-orm-migration = { version = "1.0.0" }

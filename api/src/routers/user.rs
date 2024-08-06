@@ -8,7 +8,7 @@ use axum::{
 use sea_orm::TryIntoModel;
 
 use app::error::UserError;
-use app::services::user::{create_user, get_user, search_users};
+use app::persistence::user::{create_user, get_user, search_users};
 use app::state::AppState;
 use models::params::user::CreateUserParams;
 use models::queries::user::UserQuery;

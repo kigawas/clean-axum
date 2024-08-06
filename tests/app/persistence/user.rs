@@ -1,6 +1,6 @@
 use sea_orm::{DatabaseConnection, Unchanged};
 
-use app::services::user::create_user;
+use app::persistence::user::create_user;
 use models::domains::user;
 use models::params::user::CreateUserParams;
 
