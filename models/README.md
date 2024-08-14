@@ -7,3 +7,7 @@ Only dependencies for modelling are allowed:
 - SeaORM (domain models and database)
 - validator (parameter validation)
 - utoipa (openapi)
+
+## SeaORM
+
+Write migration files first, then generate models.

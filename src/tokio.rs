@@ -6,7 +6,10 @@ async fn worker(child_num: u32, db_url: &str, prefork: bool, listener: std::net:
     tracing::info!("Worker {} started", child_num);
 
     let conn = setup_db(db_url, prefork).await;
-    migrate(&conn).await.expect("Migration failed!");
+
+    if child_num == 0 {
+        migrate(&conn).await.expect("Migration failed!");
+    }
 
     let router = setup_router(conn).attach_doc();
 
