@@ -62,6 +62,7 @@ async fn users_get(
         .map_err(ApiError::from)?;
     Ok(Json(UserListSchema::from(users)))
 }
+
 #[utoipa::path(
     get,
     path = "/{id}",
