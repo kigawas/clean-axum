@@ -9,11 +9,13 @@ pub struct ApiErrorResponse {
 }
 
 #[derive(Serialize, ToSchema)]
-#[aliases(ParamsErrorResponse = ValidationErrorResponse<HashMap<String, Vec<HashMap<String, String>>>>)]
 pub struct ValidationErrorResponse<T> {
     pub message: String,
     pub details: T,
 }
+
+pub type ParamsErrorResponse =
+    ValidationErrorResponse<HashMap<String, Vec<HashMap<String, String>>>>;
 
 impl<T> From<T> for ValidationErrorResponse<T> {
     fn from(t: T) -> Self {
