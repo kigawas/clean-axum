@@ -18,7 +18,7 @@ pub async fn create_user(
 
 pub async fn search_users(db: &DbConn, query: UserQuery) -> Result<Vec<user::Model>, DbErr> {
     user::Entity::find()
-        .filter(user::Column::Username.contains(query.username))
+        .filter(user::Column::Username.contains(query.username.unwrap_or_default()))
         .all(db)
         .await
 }

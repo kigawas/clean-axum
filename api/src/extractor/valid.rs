@@ -1,7 +1,4 @@
-use axum::{
-    async_trait,
-    extract::{FromRequest, Request},
-};
+use axum::extract::{FromRequest, Request};
 use validator::Validate;
 
 use crate::validation::ValidRejection;
@@ -9,7 +6,6 @@ use crate::validation::ValidRejection;
 #[derive(Debug, Clone, Copy, Default)]
 pub struct Valid<T>(pub T);
 
-#[async_trait]
 impl<State, Extractor> FromRequest<State> for Valid<Extractor>
 where
     State: Send + Sync,

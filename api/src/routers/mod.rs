@@ -11,8 +11,8 @@ use user::create_user_router;
 
 pub fn create_router(state: AppState) -> Router {
     Router::new()
+        .merge(create_root_router())
         .nest("/users", create_user_router())
         .nest("/blogs", create_blog_router())
-        .nest("/", create_root_router())
         .with_state(state)
 }
