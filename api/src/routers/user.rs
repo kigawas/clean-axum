@@ -16,6 +16,7 @@ use models::schemas::user::{UserListSchema, UserSchema};
 
 use crate::error::ApiError;
 use crate::extractor::{Json, Valid};
+use crate::models::{ApiErrorResponse, ParamsErrorResponse};
 
 #[utoipa::path(
     post,
