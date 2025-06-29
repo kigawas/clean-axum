@@ -10,4 +10,4 @@ migration = { path = "../migration" }
 
 axum = { workspace = true }
 tower = { workspace = true, features = ["util"] }
-sea-orm = { workspace = true, features = ["sqlx-sqlite"] }
+sea-orm = { workspace = true, features = ["sqlx-sqlite", "sqlx-postgres"] }

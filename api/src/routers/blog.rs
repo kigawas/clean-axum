@@ -53,9 +53,9 @@ async fn blogs_post(
 )]
 async fn blogs_get(
     state: State<AppState>,
-    query: Option<Query<BlogQuery>>,
+    query: Query<BlogQuery>,
 ) -> Result<impl IntoResponse, ApiError> {
-    let Query(query) = query.unwrap_or_default();
+    let Query(query) = query;
 
     let blogs = search_blogs(&state.conn, query)
         .await

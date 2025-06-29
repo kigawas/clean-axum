@@ -4,7 +4,7 @@ use models::{domains::blog, params::blog::CreateBlogParams, queries::blog::BlogQ
 
 pub async fn search_blogs(db: &DbConn, query: BlogQuery) -> Result<Vec<blog::Model>, DbErr> {
     blog::Entity::find()
-        .filter(blog::Column::Title.contains(query.title))
+        .filter(blog::Column::Title.contains(query.title.unwrap_or_default()))
         .all(db)
         .await
 }

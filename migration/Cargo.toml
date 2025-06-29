@@ -11,5 +11,8 @@ path = "src/lib.rs"
 [dependencies]
 models = { path = "../models" }
 
-async-std = { version = "1", features = ["attributes", "tokio1"] }
-sea-orm-migration = { version = "1.0.0" }
+async-std = { version = "1.13.1", features = ["attributes", "tokio1"] }
+sea-orm-migration = { version = "1.1.12", features = [
+    "sqlx-sqlite",
+    "sqlx-postgres",
+] }

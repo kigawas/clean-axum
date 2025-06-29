@@ -54,9 +54,9 @@ async fn users_post(
 )]
 async fn users_get(
     state: State<AppState>,
-    query: Option<Query<UserQuery>>,
+    query: Query<UserQuery>,
 ) -> Result<impl IntoResponse, ApiError> {
-    let Query(query) = query.unwrap_or_default();
+    let Query(query) = query;
 
     let users = search_users(&state.conn, query)
         .await
@@ -89,5 +89,5 @@ async fn users_id_get(
 pub fn create_user_router() -> Router<AppState> {
     Router::new()
         .route("/", post(users_post).get(users_get))
-        .route("/:id", get(users_id_get))
+        .route("/{id}", get(users_id_get))
 }
